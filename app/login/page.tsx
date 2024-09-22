@@ -6,20 +6,21 @@ import { WebviewContainer } from '@/app/components/WebviewContainer'
 import { apiClient } from '@/app/axios/apiClient'
 
 const LoginPage = ({ os, app_version }: PageProps) => {
+  const clientKey = process.env.NEXT_PUBLIC_KAKAO_API_KEY
+  const redirectUrl = process.env.NEXT_PUBLIC_BASE_URL
   const kakaoLogin = () => {
-    console.log('여기')
-    apiClient
-      .post('/u/member', {
-        platForm: 'KAKAO',
-        redirectUri: '',
-      })
-      .then()
+    window.location.href =
+      'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=' +
+      clientKey +
+      '&redirect_uri=' +
+      redirectUrl +
+      '/u/member'
   }
 
   const naverLogin = () => {
     apiClient.post('/u/member', {
       platForm: 'NAVER',
-      redirectUri: '',
+      redirectUri: 'http://localhost:3000/login',
     })
   }
   return (
