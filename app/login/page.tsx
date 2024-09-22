@@ -7,14 +7,14 @@ import { apiClient } from '@/app/axios/apiClient'
 
 const LoginPage = ({ os, app_version }: PageProps) => {
   const clientKey = process.env.NEXT_PUBLIC_KAKAO_API_KEY
-  const redirectUrl = process.env.NEXT_PUBLIC_BASE_URL
+  const redirectUrl = process.env.NEXT_PUBLIC_BASE_URL + '/u/member/kakao'
   const kakaoLogin = () => {
-    window.location.href =
+    window.open(
       'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=' +
-      clientKey +
-      '&redirect_uri=' +
-      redirectUrl +
-      '/u/member'
+        clientKey +
+        '&redirect_uri=' +
+        redirectUrl,
+    )
   }
 
   const naverLogin = () => {
